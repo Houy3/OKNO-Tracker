@@ -1,0 +1,42 @@
+version: '3.3'
+
+services:
+  database:
+    image:
+      postgres
+    container_name:
+      postgres_database
+    ports:
+      - "8081:5432"
+    networks:
+      - tracker_network
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=postgres
+    volumes:
+      - tracker_postgres_volume:/var/lib/postgresql/data
+
+  application:
+    image:
+      tracker
+    container_name:
+      tracker
+    networks:
+        - tracker_network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    environment:
+      - "SPRING_DATASOURCE_USERNAME=postgres"
+      - "SPRING_DATASOURCE_PASSWORD=1234"
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres"
+
+volumes:
+  tracker_postgres_volume:
+    external: true
+
+networks:
+  tracker_network:
+    external: true
