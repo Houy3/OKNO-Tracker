@@ -8,8 +8,6 @@ import ru.itis.okno.backend.dto.user.UserDto;
 import ru.itis.okno.backend.dto.user.UserUpdateDto;
 import ru.itis.okno.backend.exceptions.ApplicationException;
 
-import java.util.List;
-
 @RestController
 public class UserController implements UserApi {
 
