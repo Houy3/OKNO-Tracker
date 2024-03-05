@@ -4,8 +4,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import ru.itis.okno.backend.exceptions.ApplicationException;
 
-import java.util.List;
-
 @Data
 @Schema(description = "Ответ.")
 public class Response<T> {
@@ -15,15 +13,15 @@ public class Response<T> {
 
     public Boolean isSuccess;
 
-    public List<ErrorDto> errors;
+    public ErrorDto error;
 
     public Response(T data) {
         this.data = data;
         this.isSuccess = true;
     }
 
-    public Response(List<ErrorDto> errors) {
-        this.errors = errors;
+    public Response(ErrorDto error) {
+        this.error = error;
         this.isSuccess = false;
     }
 
@@ -32,16 +30,11 @@ public class Response<T> {
     }
 
     public static <T> Response<T> of(ApplicationException ex) {
-        ErrorDto error = new ErrorDto(ex.getMessage(), ex.getDetails());
-        return new Response<>(List.of(error));
+        return new Response<>(new ErrorDto(ex.getMessage(), ex.getDetails()));
     }
 
     public static <T> Response<T> of(Throwable ex) {
-        ErrorDto error = new ErrorDto(ex.getMessage(), "");
-        return new Response<>(List.of(error));
+        return new Response<>(new ErrorDto("Something went wrong with server, try again.", ex.getMessage()));
     }
 
-    public static <T> Response<T> of(List<ErrorDto> errors) {
-        return new Response<>(errors);
-    }
 }

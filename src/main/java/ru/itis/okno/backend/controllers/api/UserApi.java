@@ -25,19 +25,19 @@ public interface UserApi {
     Response<UserDto> read(@Parameter(description = "Идентификатор.")
                            @PathVariable("user-id") Long id,
                            @Parameter(description = "Идентификатор для авторизации.")
-                           @RequestParam Long authId);
+                           @RequestHeader(name = "Auth") Long authId);
 
     @Operation(summary = "Изменить.")
     @PutMapping
     Response<UserDto> update(@RequestBody UserUpdateDto dto,
                              @Parameter(description = "Идентификатор для авторизации.")
-                             @RequestParam Long authId);
+                             @RequestHeader(name = "Auth") Long authId);
 
     @Operation(summary = "Удалить.")
     @DeleteMapping("/{user-id}")
     Response<UserDto> delete(@Parameter(description = "Идентификатор.")
                              @PathVariable("user-id") Long id,
                              @Parameter(description = "Идентификатор для авторизации.")
-                             @RequestParam Long authId);
+                             @RequestHeader(name = "Auth") Long authId);
 
 }

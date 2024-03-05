@@ -13,6 +13,9 @@ public class TaskCreateDto {
     @Schema(description = "Описание.")
     public String description;
 
+    @Schema(description = "Автор.")
+    public long userId;
+
     @Schema(description = "Дата начала работы над задачей.")
     public LocalDateTime startTime;
 

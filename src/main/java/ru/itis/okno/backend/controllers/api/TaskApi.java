@@ -18,34 +18,40 @@ public interface TaskApi {
     @PostMapping
     Response<TaskDto> create(@RequestBody TaskCreateDto dto,
                              @Parameter(description = "Идентификатор для авторизации.")
-                             @RequestParam Long authId);
+                             @RequestHeader(name = "Auth") Long authId);
 
     @Operation(summary = "Получить.")
     @GetMapping("/{task-id}")
     Response<TaskDto> read(@Parameter(description = "Идентификатор.")
                            @PathVariable("task-id") Long id,
                            @Parameter(description = "Идентификатор для авторизации.")
-                           @RequestParam Long authId);
+                           @RequestHeader(name = "Auth") Long authId);
 
     @Operation(summary = "Изменить.")
     @PutMapping
     Response<TaskDto> update(@RequestBody TaskUpdateDto dto,
                              @Parameter(description = "Идентификатор для авторизации.")
-                             @RequestParam Long authId);
+                             @RequestHeader(name = "Auth") Long authId);
 
     @Operation(summary = "Удалить.")
-    @DeleteMapping("/{Task-id}")
+    @DeleteMapping("/{task-id}")
     Response<TaskDto> delete(@Parameter(description = "Идентификатор.")
-                             @PathVariable("Task-id") Long id,
+                             @PathVariable("task-id") Long id,
                              @Parameter(description = "Идентификатор для авторизации.")
-                             @RequestParam Long authId);
+                             @RequestHeader(name = "Auth") Long authId);
 
 
     @Operation(summary = "Пометить выполненным.")
-    @PutMapping("/{task-id}")
+    @PutMapping("completed/{task-id}")
     Response<TaskDto> makeCompleted(@Parameter(description = "Идентификатор.")
                                     @PathVariable("task-id") Long id,
                                     @Parameter(description = "Идентификатор для авторизации.")
-                                    @RequestParam Long authId);
+                                    @RequestHeader(name = "Auth") Long authId);
 
+    @Operation(summary = "Пометить выполненным.")
+    @PutMapping("uncompleted/{task-id}")
+    Response<TaskDto> makeUncompleted(@Parameter(description = "Идентификатор.")
+                                      @PathVariable("task-id") Long id,
+                                      @Parameter(description = "Идентификатор для авторизации.")
+                                      @RequestHeader(name = "Auth") Long authId);
 }
