@@ -16,9 +16,6 @@ public class TaskUpdateDto {
     @Schema(description = "Описание.")
     public String description;
 
-    @Schema(description = "Дата начала работы над задачей.")
-    public LocalDateTime startTime;
-
     @Schema(description = "Дата дедлайна.")
     public LocalDateTime deadlineTime;
 }

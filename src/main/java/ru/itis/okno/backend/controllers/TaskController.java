@@ -34,4 +34,9 @@ public class TaskController implements TaskApi {
     public Response<TaskDto> makeCompleted(Long id, Long authId) {
         throw new ApplicationException("not implemented","not implemented");
     }
+
+    @Override
+    public Response<TaskDto> makeUncompleted(Long id, Long authId) {
+        throw new ApplicationException("not implemented","not implemented");
+    }
 }

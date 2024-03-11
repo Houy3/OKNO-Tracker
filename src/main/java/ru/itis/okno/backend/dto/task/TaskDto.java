@@ -22,10 +22,6 @@ public class TaskDto {
     @Schema(description = "Сделана ли задача.")
     public Boolean isCompleted;
 
-
-    @Schema(description = "Дата последнего изменения.")
-    public LocalDateTime lastChangeTime;
-
     @Schema(description = "Дата начала работы над задачей.")
     public LocalDateTime startTime;
 

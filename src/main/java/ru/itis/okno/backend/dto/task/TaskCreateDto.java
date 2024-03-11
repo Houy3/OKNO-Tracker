@@ -17,7 +17,7 @@ public class TaskCreateDto {
     public long userId;
 
     @Schema(description = "Дата начала работы над задачей.")
-    public LocalDateTime startTime;
+    public LocalDateTime creationTime;
 
     @Schema(description = "Дата дедлайна.")
     public LocalDateTime deadlineTime;
