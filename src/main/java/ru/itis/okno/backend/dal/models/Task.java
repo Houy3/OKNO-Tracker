@@ -1,13 +1,15 @@
-package ru.itis.okno.backend.models;
+package ru.itis.okno.backend.dal.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tasks")
@@ -20,8 +22,8 @@ public class Task {
     @Column(nullable = false)
     private String name;
 
-    @Column
-    public String description;
+    @Lob
+    private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
@@ -32,9 +34,7 @@ public class Task {
     @Column(nullable = false)
     private LocalDateTime lastModifiedTime;
 
-    @Column
     private LocalDateTime deadlineTime;
 
-    @Column
     private LocalDateTime completedTime;
 }

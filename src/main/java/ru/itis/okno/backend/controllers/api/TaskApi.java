@@ -42,15 +42,15 @@ public interface TaskApi {
 
 
     @Operation(summary = "Пометить выполненным.")
-    @PutMapping("completed/{task-id}")
-    Response<TaskDto> makeCompleted(@Parameter(description = "Идентификатор.")
+    @PutMapping("mark_as_completed/{task-id}")
+    Response<TaskDto> markAsCompleted(@Parameter(description = "Идентификатор.")
                                     @PathVariable("task-id") Long id,
                                     @Parameter(description = "Идентификатор для авторизации.")
                                     @RequestHeader(name = "Auth") Long authId);
 
-    @Operation(summary = "Пометить выполненным.")
-    @PutMapping("uncompleted/{task-id}")
-    Response<TaskDto> makeUncompleted(@Parameter(description = "Идентификатор.")
+    @Operation(summary = "Пометить невыполненным.")
+    @PutMapping("mark_as_uncompleted/{task-id}")
+    Response<TaskDto> markAsUncompleted(@Parameter(description = "Идентификатор.")
                                       @PathVariable("task-id") Long id,
                                       @Parameter(description = "Идентификатор для авторизации.")
                                       @RequestHeader(name = "Auth") Long authId);

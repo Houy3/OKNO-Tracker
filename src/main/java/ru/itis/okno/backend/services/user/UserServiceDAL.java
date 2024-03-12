@@ -42,7 +42,8 @@ public class UserServiceDAL implements UserService {
         return mapper.map(
                 saveInternal(
                         mapper.map(
-                                readInternal(dto.id), dto)));
+                                readInternal(dto.id),
+                                dto)));
     }
 
     public UserDto delete(Long id, Long authId) {
@@ -80,9 +81,9 @@ public class UserServiceDAL implements UserService {
     }
 
 
-    protected void checkAccess(Long dataId, Long authId) {
-        if (!dataId.equals(authId))
-            throw new DataAccessException(StackWalkerUtil.getCaller(), dataId, authId);
+    protected void checkAccess(Long ownerId, Long authId) {
+        if (!ownerId.equals(authId))
+            throw new DataAccessException(StackWalkerUtil.getCaller(), ownerId, authId);
     }
 
     protected void checkUniqueFields(User dal) {

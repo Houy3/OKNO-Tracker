@@ -1,9 +1,11 @@
 package ru.itis.okno.backend.dto.task;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 
 import java.time.LocalDateTime;
 
+@Builder
 @Schema(description = "Задача.")
 public class TaskDto {
 

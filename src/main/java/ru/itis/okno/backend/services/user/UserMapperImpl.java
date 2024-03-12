@@ -17,7 +17,6 @@ public class UserMapperImpl implements UserMapper {
 
     HashGenerator hashGenerator;
 
-    @Override
     public UserDto map(User dal) {
         return UserDto.builder()
                 .id(dal.getId())
@@ -25,7 +24,6 @@ public class UserMapperImpl implements UserMapper {
                 .build();
     }
 
-    @Override
     public User map(UserCreateDto dto) {
         return User.builder()
                 .email(dto.email)
@@ -33,7 +31,6 @@ public class UserMapperImpl implements UserMapper {
                 .build();
     }
 
-    @Override
     public User map(User dal, UserUpdateDto dto) {
         dal.setEmail(dto.email);
         dal.setPasswordHash(hashGenerator.hash(dto.password));

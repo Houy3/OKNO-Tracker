@@ -22,4 +22,8 @@ public class User {
 
     @Column(nullable = false)
     private String passwordHash;
+
+    public User(Long id) {
+        this.id = id;
+    }
 }
