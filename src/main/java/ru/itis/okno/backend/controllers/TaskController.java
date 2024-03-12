@@ -8,6 +8,7 @@ import ru.itis.okno.backend.controllers.api.TaskApi;
 import ru.itis.okno.backend.dto.base.Response;
 import ru.itis.okno.backend.dto.task.TaskCreateDto;
 import ru.itis.okno.backend.dto.task.TaskDto;
+import ru.itis.okno.backend.dto.task.TaskPage;
 import ru.itis.okno.backend.dto.task.TaskUpdateDto;
 import ru.itis.okno.backend.services.task.TaskService;
 
@@ -46,6 +47,16 @@ public class TaskController implements TaskApi {
     public Response<TaskDto> markAsUncompleted(Long id, Long authId) {
         return Response.of(
                 service.markAsUncompleted(id, authId));
+    }
+
+    public Response<TaskPage> uncompletedListOrderByDeadline(Long userId, Integer page, Integer pageSize, Long authId) {
+        return Response.of(
+                service.uncompletedListOrderByDeadline(userId, page, pageSize, authId));
+    }
+
+    public Response<TaskPage> completedListOrderByCompletedDesc(Long userId, Integer page, Integer pageSize, Long authId) {
+        return Response.of(
+                service.completedListOrderByCompletedDesc(userId, page, pageSize, authId));
     }
 
 }

@@ -3,11 +3,15 @@ package ru.itis.okno.backend.services.task;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.itis.okno.backend.dal.TaskRepository;
 import ru.itis.okno.backend.dal.models.Task;
+import ru.itis.okno.backend.dal.models.User;
 import ru.itis.okno.backend.dto.task.TaskCreateDto;
 import ru.itis.okno.backend.dto.task.TaskDto;
+import ru.itis.okno.backend.dto.task.TaskPage;
 import ru.itis.okno.backend.dto.task.TaskUpdateDto;
 import ru.itis.okno.backend.exceptions.DataAccessException;
 import ru.itis.okno.backend.exceptions.DataNotFoundException;
@@ -74,7 +78,31 @@ public class TaskServiceDAL implements TaskService {
                 saveInternal(dal));
     }
 
-    
+    public TaskPage uncompletedListOrderByDeadline(Long userId, Integer page, Integer pageSize, Long authId) {
+        checkAccess(userId, authId);
+
+        PageRequest pageRequest = PageRequest.of(page - 1, pageSize);
+        Page<Task> contentPage = repository.findAllByUserAndIsCompletedOrderByDeadlineTime(pageRequest, new User(userId), false);
+
+        return TaskPage.builder()
+                .taskList(mapper.map(contentPage.getContent()))
+                .totalPagesCount(contentPage.getTotalPages())
+                .build();
+    }
+
+    public TaskPage completedListOrderByCompletedDesc(Long userId, Integer page, Integer pageSize, Long authId) {
+        checkAccess(userId, authId);
+
+        PageRequest pageRequest = PageRequest.of(page - 1, pageSize);
+        Page<Task> contentPage = repository.findAllByUserAndIsCompletedOrderByCompletedTimeDesc(pageRequest, new User(userId), true);
+
+        return TaskPage.builder()
+                .taskList(mapper.map(contentPage.getContent()))
+                .totalPagesCount(contentPage.getTotalPages())
+                .build();
+    }
+
+
     protected Task readInternal(Long id) {
         var opt = repository.findById(id);
         if (opt.isPresent())

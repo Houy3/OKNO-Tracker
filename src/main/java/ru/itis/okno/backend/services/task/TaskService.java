@@ -2,6 +2,7 @@ package ru.itis.okno.backend.services.task;
 
 import ru.itis.okno.backend.dto.task.TaskCreateDto;
 import ru.itis.okno.backend.dto.task.TaskDto;
+import ru.itis.okno.backend.dto.task.TaskPage;
 import ru.itis.okno.backend.dto.task.TaskUpdateDto;
 
 public interface TaskService {
@@ -18,4 +19,7 @@ public interface TaskService {
 
     TaskDto markAsUncompleted(Long id, Long authId);
 
+    TaskPage uncompletedListOrderByDeadline(Long userId, Integer page, Integer pageSize, Long authId);
+
+    TaskPage completedListOrderByCompletedDesc(Long userId, Integer page, Integer pageSize, Long authId);
 }
