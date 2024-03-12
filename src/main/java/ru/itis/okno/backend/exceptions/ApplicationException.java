@@ -1,7 +1,6 @@
 package ru.itis.okno.backend.exceptions;
 
 import lombok.Getter;
-
 /**
  * Exception, отлавливаемый RestExceptionHandler. Рекомендуется использовать его.
  */
@@ -10,8 +9,8 @@ public class ApplicationException extends RuntimeException {
 
     protected final String details;
 
-    public ApplicationException(String message, String details) {
+    public ApplicationException(String message, String... details) {
         super(message);
-        this.details = details;
+        this.details = String.join(";", details);
     }
 }

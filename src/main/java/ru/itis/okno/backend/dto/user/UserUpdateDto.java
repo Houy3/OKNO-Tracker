@@ -8,8 +8,8 @@ public class UserUpdateDto {
     @Schema(description = "Идентификатор.")
     public Long id;
 
-    @Schema(description = "Логин.")
-    public String login;
+    @Schema(description = "Электронная почта.")
+    public String email;
 
     @Schema(description = "Пароль.")
     public String password;
