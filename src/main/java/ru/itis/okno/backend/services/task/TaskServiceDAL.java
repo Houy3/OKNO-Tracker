@@ -116,9 +116,9 @@ public class TaskServiceDAL implements TaskService {
         return repository.save(dal);
     }
 
-    protected void checkAccess(Long ownerId, Long authId) {
-        if (!ownerId.equals(authId))
-            throw new DataAccessException(StackWalkerUtil.getCaller(), ownerId, authId);
+    protected void checkAccess(Long userId, Long authId) {
+        if (!userId.equals(authId))
+            throw new DataAccessException(StackWalkerUtil.getCaller(), userId, authId);
     }
 
 }

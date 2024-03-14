@@ -37,4 +37,8 @@ public class Task {
     private LocalDateTime deadlineTime;
 
     private LocalDateTime completedTime;
+
+    public Task(Long id) {
+        this.id = id;
+    }
 }

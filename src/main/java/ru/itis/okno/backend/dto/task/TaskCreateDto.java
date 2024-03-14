@@ -13,7 +13,7 @@ public class TaskCreateDto {
     @Schema(description = "Описание.")
     public String description;
 
-    @Schema(description = "Автор.")
+    @Schema(description = "Пользователь.")
     public long userId;
 
     @Schema(description = "Дата дедлайна.")

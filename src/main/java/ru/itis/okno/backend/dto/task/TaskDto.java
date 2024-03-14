@@ -18,7 +18,7 @@ public class TaskDto {
     @Schema(description = "Описание.")
     public String description;
 
-    @Schema(description = "Автор.")
+    @Schema(description = "Пользователь.")
     public long userId;
 
     @Schema(description = "Сделана ли задача.")
